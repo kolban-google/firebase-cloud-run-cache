@@ -1,0 +1,28 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+      "source": "/cr{,/**}",
+      "run": {
+        "serviceId": "cloud-run-app",
+        "region": "us-central1"
+      }
+    }],
+    "headers":[
+      {
+        "source": "/cr/generate",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,s-maxage=5"
+          }
+        ]
+      }
+    ]
+  }
+}
